@@ -82,7 +82,7 @@ module Jsonrpctcp
         socket = TCPSocket.open(@host, @port)
         socket.write(call_obj_json)
         socket.close_write()
-        response = socket.read()
+        response = socket.recv(1000000)
         parsed_response = JSON.load(response)
       rescue JSON::ParserError
         raise RPCException.new("RPC response could not be parsed")
