@@ -81,6 +81,7 @@ module Jsonrpctcp
       begin
         socket = TCPSocket.open(@host, @port, connect_timeout: 10)
         socket.write(call_obj_json)
+        sleep 0.1
         socket.close_write()
         response = socket.recv(1000000)
         parsed_response = JSON.load(response)
